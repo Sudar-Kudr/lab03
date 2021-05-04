@@ -181,5 +181,5 @@ error: discriminant < 0
 
 
 ```
-Copyright (c) 2015-2020 The ISC Authors & navckin
+Copyright (c) 2015-2021 The ISC Authors
 ```
