@@ -14,6 +14,149 @@ $ open https://git-scm.com
 - [ok] 4. Выполнить инструкцию учебного материала
 - [ok] 5. Составить отчет и отправить ссылку личным сообщением в **Slack**
 
+## Tutorial
+
+```sh
+$ export GITHUB_USERNAME=<имя_пользователя>    #присваиваем <имя_пользователя> в переменную GITHUB_USERNAME
+```
+
+```sh
+$ cd ${GITHUB_USERNAME}/workspace    #спускаемся в workspace
+$ pushd .                            #добавляем в стек текущий каталог
+$ source scripts/activate            #выполняем скрипт
+```
+
+```sh
+$ git clone https://github.com/${GITHUB_USERNAME}/lab02.git projects/lab03        #клонируем репозиторий с прошлой лабораторной (lab02) в папку lab03
+$ cd projects/lab03                                                             #спускаемся в папку lab03
+$ git remote remove origin                                                    #удаление старой ссылки репозитория с lab02
+$ git remote add origin https://github.com/${GITHUB_USERNAME}/lab03.git     #добавление новой ссылки удалённого репозитория
+```
+
+```sh
+$ g++ -std=c++11 -I./include -c sources/print.cpp       #устанавливаем версию С++ и cобираем файл print.cpp
+$ ls print.o                                            #выводим файлы, которые появились после компиляции файла print.o
+$ nm print.o | grep print                               #выводим список символов из объектного файла print.
+$ ar rvs print.a print.o                                #создаем архив print.a из файла print.o
+$ file print.a                                          #узнаем тип данных
+$ g++ -std=c++11 -I./include -c examples/example1.cpp   #устанавливаем версию С++ и cобираем файл example1.cpp
+$ ls example1.o                                         #выводим файлы, которые появились после компиляции файла example1.o
+$ g++ example1.o print.a -o example1                    #запускаем код в example1.o и print.a, указываем имя исполняемого файла, который получим на выходе (example1)
+$ ./example1 && echo                                    #запускаем файл и выводим содержимое
+```
+
+```sh
+$ g++ -std=c++11 -I./include -c examples/example2.cpp   #устанавливаем версию С++ и cобираем файл example2.cpp
+$ nm example2.o                                         #выводим список символов из объектного файла example2.o
+$ g++ example2.o print.a -o example2                    #запускаем код в example2.o и print.a, указываем имя исполняемого файла, который получим на выходе (example2)
+$ ./example2                                            #запускаем файл
+$ cat log.txt && echo                                   #считываем файл log.txt выводим его содержимое
+```
+
+```sh
+$ rm -rf example1.o example2.o print.o                  #удаляем файлы rm -rf example1.o, example2.o и print.o
+$ rm -rf print.a                                        #удаляем файл print.a
+$ rm -rf example1 example2                              #удаляем программу example1 и example2
+$ rm -rf log.txt                                        #удаляем файл log.txt
+```
+
+```sh
+$ cat > CMakeLists.txt <<EOF                            #открываем файл и пишем данные от EOF до EOF
+cmake_minimum_required(VERSION 3.4)
+project(print)
+EOF
+```
+
+```sh
+$ cat >> CMakeLists.txt <<EOF                           #открываем файл и продолжаем писать данные от EOF до EOF
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+EOF
+```
+
+```sh
+$ cat >> CMakeLists.txt <<EOF                            #открываем файл и продолжаем писать данные от EOF до EOF
+add_library(print STATIC \${CMAKE_CURRENT_SOURCE_DIR}/sources/print.cpp)
+EOF
+```
+
+```sh
+$ cat >> CMakeLists.txt <<EOF                           #открываем файл и продолжаем писать данные от EOF до EOF
+include_directories(\${CMAKE_CURRENT_SOURCE_DIR}/include)
+EOF
+```
+
+```sh
+$ cmake -H. -B_build             #####################записываем файлы сборки в директорию _build
+$ cmake --build _build           ###############################
+```
+
+```sh
+$ cat >> CMakeLists.txt <<EOF           #открываем файл и продолжаем писать данные от EOF до EOF
+
+add_executable(example1 \${CMAKE_CURRENT_SOURCE_DIR}/examples/example1.cpp)
+add_executable(example2 \${CMAKE_CURRENT_SOURCE_DIR}/examples/example2.cpp)
+EOF
+```
+
+```sh
+$ cat >> CMakeLists.txt <<EOF           #открываем файл и продолжаем писать данные от EOF до EOF
+
+target_link_libraries(example1 print)
+target_link_libraries(example2 print)
+EOF
+```
+
+```sh
+$ cmake --build _build                          #####################
+$ cmake --build _build --target print           #####################
+$ cmake --build _build --target example1        #####################
+$ cmake --build _build --target example2        #####################
+```
+
+```sh
+$ ls -la _build/libprint.a       #выводим информацию о файле _build
+$ _build/example1 && echo        #запускаем файл и выводим содержимое
+hello
+$ _build/example2                #запускаем файл
+$ cat log.txt && echo            #считываем файл log.txt выводим его содержимое
+hello
+$ rm -rf log.txt                 #удаляем файл log.txt
+```
+
+```sh
+$ git clone https://github.com/tp-labs/lab03 tmp       #клонируем репозиторий по ссылке в директорию tmp
+$ mv -f tmp/CMakeLists.txt .                         #перемещаем файл CmakeList.txt в директорию tmp
+$ rm -rf tmp                                       #удаляем папку tmp
+```
+
+```sh
+$ cat CMakeLists.txt                                       #выводим данные файла CMakeList.txt
+$ cmake -H. -B_build -DCMAKE_INSTALL_PREFIX=_install     #####################
+$ cmake --build _build --target install                #####################
+$ tree _install                                      #выводим в терминал структуру папки _install, в виде "дерева"
+```
+
+```sh
+$ git add CMakeLists.txt                    #добавляем CMakeLists.txt
+$ git commit -m "added CMakeLists.txt"    #закомментируем его
+$ git push origin main                  #отправляем данные на сервер, в удаленный репозиторий main
+```
+
+## Report
+
+```sh
+$ popd
+$ cd ~/workspace/                                                                #переходим в папку workspace
+$ export LAB_NUMBER=03                                                          #присваиваем 02 в переменную LAB_NUMBER
+$ git clone https://github.com/tp-labs/lab${LAB_NUMBER} tasks/lab${LAB_NUMBER} #клонируем из ссылки в директорию (в наше случае-tasks/lab03)
+$ mkdir reports/lab${LAB_NUMBER}                                              #создаем директорию (в наше случае- lab03)                                      
+$ cp tasks/lab${LAB_NUMBER}/README.md reports/lab${LAB_NUMBER}/REPORT.md     #спускаемся в директорию (в наше случае- lab03)
+$ cd reports/lab${LAB_NUMBER}                                               #копируем из одной директории в другую
+$ edit REPORT.md                                                           #редактируем REPORT.md
+$ gist REPORT.md                                                          #сохраняем REPORT.md
+```
+
 ## Homework
 
 ### Part I
