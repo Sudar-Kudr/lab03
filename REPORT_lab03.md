@@ -87,8 +87,8 @@ EOF
 ```
 
 ```sh
-$ cmake -H. -B_build             #####################записываем файлы сборки в директорию _build
-$ cmake --build _build           ###############################
+$ cmake -H. -B_build             #устанавливаем в директорию _build файлы сборки
+$ cmake --build _build           #запускаем сборку
 ```
 
 ```sh
@@ -108,10 +108,10 @@ EOF
 ```
 
 ```sh
-$ cmake --build _build                          #####################
-$ cmake --build _build --target print           #####################
-$ cmake --build _build --target example1        #####################
-$ cmake --build _build --target example2        #####################
+$ cmake --build _build                          #запускаем сборку
+$ cmake --build _build --target print           #запускаем сборку print
+$ cmake --build _build --target example1        #запускаем сборку example1
+$ cmake --build _build --target example2        #запускаем сборку example2
 ```
 
 ```sh
@@ -132,8 +132,8 @@ $ rm -rf tmp                                       #удаляем папку tm
 
 ```sh
 $ cat CMakeLists.txt                                       #выводим данные файла CMakeList.txt
-$ cmake -H. -B_build -DCMAKE_INSTALL_PREFIX=_install     #####################
-$ cmake --build _build --target install                #####################
+$ cmake -H. -B_build -DCMAKE_INSTALL_PREFIX=_install     #устанавливаем префикс на _install
+$ cmake --build _build --target install                #запускаем сборку install
 $ tree _install                                      #выводим в терминал структуру папки _install, в виде "дерева"
 ```
 
