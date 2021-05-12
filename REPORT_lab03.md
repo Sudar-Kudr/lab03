@@ -148,7 +148,7 @@ $ git push origin main                  #отправляем данные на 
 ```sh
 $ popd
 $ cd ~/workspace/                                                                #переходим в папку workspace
-$ export LAB_NUMBER=03                                                          #присваиваем 02 в переменную LAB_NUMBER
+$ export LAB_NUMBER=03                                                          #присваиваем 03 в переменную LAB_NUMBER
 $ git clone https://github.com/tp-labs/lab${LAB_NUMBER} tasks/lab${LAB_NUMBER} #клонируем из ссылки в директорию (в наше случае-tasks/lab03)
 $ mkdir reports/lab${LAB_NUMBER}                                              #создаем директорию (в наше случае- lab03)                                      
 $ cp tasks/lab${LAB_NUMBER}/README.md reports/lab${LAB_NUMBER}/REPORT.md     #спускаемся в директорию (в наше случае- lab03)
