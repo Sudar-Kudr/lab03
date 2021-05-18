@@ -150,7 +150,7 @@ $ popd
 $ cd ~/workspace/                                                                #переходим в папку workspace
 $ export LAB_NUMBER=03                                                          #присваиваем 03 в переменную LAB_NUMBER
 $ git clone https://github.com/tp-labs/lab${LAB_NUMBER} tasks/lab${LAB_NUMBER} #клонируем из ссылки в директорию (в наше случае-tasks/lab03)
-$ mkdir reports/lab${LAB_NUMBER}                                              #создаем директорию (в наше случае- lab03)                                      
+$ mkdir reports/lab${LAB_NUMBER}                                              #создаем в директории reports папку (в нашем случае- lab03)                                      
 $ cp tasks/lab${LAB_NUMBER}/README.md reports/lab${LAB_NUMBER}/REPORT.md     #спускаемся в директорию (в наше случае- lab03)
 $ cd reports/lab${LAB_NUMBER}                                               #копируем из одной директории в другую
 $ edit REPORT.md                                                           #редактируем REPORT.md
